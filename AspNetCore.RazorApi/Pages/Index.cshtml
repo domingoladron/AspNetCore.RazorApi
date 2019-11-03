@@ -1,10 +1,43 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Are you eating right?";
+}
+
+
+@section scripts {
+    <script>
+
+        $(document).ready(function() {
+
+            var fruitNameDisplay = $('#fruitNameDisplay');
+
+            getFruitName();
+
+
+            function getFruitName() {
+
+                $.ajax({
+                        url: '/FruitFinder',
+                        data: {
+                        }
+                    })
+                    .done(function(result) {
+                        $(fruitNameDisplay).text(result);
+                    });
+            }
+
+        });
+    </script>
+
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h4>Are you eating right?</h4>
+    
 </div>
+<div>
+    <p style="text-align: center;">You don't look so well.  Are you eating enough <span id="fruitNameDisplay"></span>?</p>
+</div>
+
+    
